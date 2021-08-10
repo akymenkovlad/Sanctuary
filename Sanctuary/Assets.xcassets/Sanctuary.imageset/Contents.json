@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "%E2%80%94Pngtree%E2%80%94radiation%20nuclear%20symbol%20stains_5147789.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
