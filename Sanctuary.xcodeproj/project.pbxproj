@@ -89,6 +89,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9119AECF273EB5A50012ADF6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				91A1ED5424D477110040E5E7 /* Main.storyboard */,
+				91A1ED5724D477120040E5E7 /* Assets.xcassets */,
+				91A1ED5924D477120040E5E7 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9119AED0273EB5C90012ADF6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				91A1ED4E24D477110040E5E7 /* AppDelegate.swift */,
+				91A1ED5024D477110040E5E7 /* SceneDelegate.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		91206A9D24D591A500453084 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,7 +133,7 @@
 			path = Functions;
 			sourceTree = "<group>";
 		};
-		919818E724F77B0E0088E01F /* JSON */ = {
+		919818E724F77B0E0088E01F /* JsonStructures */ = {
 			isa = PBXGroup;
 			children = (
 				919AC40524DA9AEA00745ACC /* Additional Info.swift */,
@@ -128,7 +147,7 @@
 				91206A9B24D5908300453084 /* Person.swift */,
 				919AC41124DA9BF500745ACC /* Special Cards.swift */,
 			);
-			path = JSON;
+			path = JsonStructures;
 			sourceTree = "<group>";
 		};
 		919818E824F77B3B0088E01F /* GameData */ = {
@@ -140,7 +159,7 @@
 			path = GameData;
 			sourceTree = "<group>";
 		};
-		919AC41324DA9C2300745ACC /* View Controllers */ = {
+		919AC41324DA9C2300745ACC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				91A1ED5224D477110040E5E7 /* ViewController.swift */,
@@ -148,7 +167,7 @@
 				9128C8BC24E14A3B00D2D31E /* PlayerInfoViewController.swift */,
 				91E82C0424F7A15200A11582 /* SpecialConditionTableViewController.swift */,
 			);
-			path = "View Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		91A1ED4224D477110040E5E7 = {
@@ -170,16 +189,13 @@
 		91A1ED4D24D477110040E5E7 /* Sanctuary */ = {
 			isa = PBXGroup;
 			children = (
-				91A1ED4E24D477110040E5E7 /* AppDelegate.swift */,
-				91A1ED5024D477110040E5E7 /* SceneDelegate.swift */,
-				91A1ED5424D477110040E5E7 /* Main.storyboard */,
-				91A1ED5724D477120040E5E7 /* Assets.xcassets */,
-				91A1ED5924D477120040E5E7 /* LaunchScreen.storyboard */,
 				91A1ED5C24D477120040E5E7 /* Info.plist */,
-				919AC41324DA9C2300745ACC /* View Controllers */,
-				91AC083C24D58CE7008D0A29 /* Model */,
+				919AC41324DA9C2300745ACC /* Controllers */,
 				91206A9D24D591A500453084 /* Data */,
 				916B458024F6999F00593373 /* Functions */,
+				91AC083C24D58CE7008D0A29 /* Model */,
+				9119AED0273EB5C90012ADF6 /* Resources */,
+				9119AECF273EB5A50012ADF6 /* Views */,
 			);
 			path = Sanctuary;
 			sourceTree = "<group>";
@@ -188,7 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				919818E824F77B3B0088E01F /* GameData */,
-				919818E724F77B0E0088E01F /* JSON */,
+				919818E724F77B0E0088E01F /* JsonStructures */,
 			);
 			path = Model;
 			sourceTree = "<group>";

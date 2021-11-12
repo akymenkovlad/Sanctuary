@@ -111,7 +111,7 @@ class PlayersTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
-            headerView.textLabel?.textColor = .white
+            headerView.textLabel?.textColor = .label
             headerView.textLabel?.font = .italicSystemFont(ofSize: 15)
         }
     }
@@ -119,7 +119,7 @@ class PlayersTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath)
 
         cell.textLabel?.text = "Игрок \(indexPath.row+1)"
-        cell.textLabel?.textColor = .white
+        cell.textLabel?.textColor = .label
         cell.textLabel?.font = .italicSystemFont(ofSize: 25)
         return cell
     }

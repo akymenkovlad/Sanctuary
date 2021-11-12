@@ -12,7 +12,7 @@ fileprivate var foregroundView: UIView?
 extension UIViewController{
     func showSpinner(alpha: CGFloat){
     foregroundView = UIView(frame: self.view.bounds)
-        foregroundView?.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: alpha)
+        foregroundView?.backgroundColor = .systemBackground
          let imageView = UIImageView()
         imageView.contentMode = UIView.ContentMode.scaleAspectFit
         imageView.frame.size.width = 75
