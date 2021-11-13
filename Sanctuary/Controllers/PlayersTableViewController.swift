@@ -5,7 +5,7 @@
 //  Created by Valados on 10.08.2020.
 //  Copyright © 2020 Valados. All rights reserved.
 //
-
+/*
 import UIKit
 
 class PlayersTableViewController: UITableViewController {
@@ -30,7 +30,7 @@ class PlayersTableViewController: UITableViewController {
    let gender:[String] = ["Мужской","Женский"]
    let orientation:[String] = ["Гомосексуальность","Гетеросексуальность","Бисексуальность"]
     
-   let newGame = NewGame.player
+   let newGame = Game.player
    var players = [PlayerInformation]()
    
     
@@ -241,3 +241,4 @@ class PlayersTableViewController: UITableViewController {
         }
     }
 }
+*/

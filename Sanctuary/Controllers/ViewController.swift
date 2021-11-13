@@ -9,10 +9,10 @@
 import UIKit
 
 
-  
+  /*
 class ViewController: UIViewController, UINavigationControllerDelegate {
 
-    let newGame = NewGame.player
+
     
     @IBOutlet weak var playerNumberLabel: UILabel!
     @IBOutlet weak var newGameButton: UIButton!
@@ -41,3 +41,4 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 }
 
 
+*/
