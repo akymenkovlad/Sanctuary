@@ -9,18 +9,25 @@
 import Foundation
 import RealmSwift
 
-class Game{
+struct Game{
     
     var playerList = [Player]()
     let players:Int
     
     init(numberOfPlayers: Int) {
         self.players = numberOfPlayers
+        guard players > 0 else {
+            return
+        }
         RandomGeneration()
         for index in 0..<numberOfPlayers{
             let player = createPlayer(withNumber: index)
             playerList.append(player)
         }
+    }
+    init(players:[Player]) {
+        self.playerList = players
+        self.players = players.count
     }
     
   
@@ -43,7 +50,7 @@ class Game{
     var healthArray:[Int] = []
     var fileURLShare:[URL] = []
     
-    func RandomGeneration(){
+    mutating func RandomGeneration(){
         characterArray =  createPersonInformation(array: RealmData.character, multiplier: 1)
         baggageArray =  createPersonInformation(array: RealmData.baggage, multiplier: 1)
         fearArray =  createPersonInformation(array: RealmData.fear, multiplier: 1)
@@ -83,7 +90,7 @@ class Game{
     }
     
     func createPlayer(withNumber value:Int)->Player{
-        let player = Player()
+        var player = Player()
         player.additionalInformation = RealmData.generateCharacterstic(objectType: AddInfoRealm.self, key:"additionalInformation", index: addInfo[value])
         player.baggage = RealmData.generateCharacterstic(objectType: BaggageRealm.self, key: "baggage", index: baggageArray[value])
         player.treatOfCharacter = RealmData.generateCharacterstic(objectType: TreatsOfCharacterRealm.self, key: "characteristic", index: characterArray[value])
@@ -97,7 +104,7 @@ class Game{
         player.jobExperience = jobExperienceArray[value]
         player.orientation = orientationArray[value]
         player.sex = sexArray[value]
-        print(player)
+        dump(player)
         return player
     }
     

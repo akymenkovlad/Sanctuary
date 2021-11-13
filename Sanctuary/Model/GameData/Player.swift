@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Player{
+struct Player{
     var additionalInformation:String
     var baggage:String
     var treatOfCharacter:String
@@ -50,7 +50,7 @@ class Player{
          sex:String,
          card1 firstSpecialCard:String,
          card2 secondSpecialCard:String,
-         gender:String,
+         orientation:String,
          age:Int,
          jobExperience:Int){
         
@@ -66,7 +66,7 @@ class Player{
         self.secondSpecialCard = secondSpecialCard
         self.age = age
         self.jobExperience = jobExperience
-        self.orientation = gender
+        self.orientation = orientation
     }
 
 }

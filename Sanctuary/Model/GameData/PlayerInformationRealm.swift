@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class PlayerStorage: Object {
+class PlayerInformationRealm: Object {
     @Persisted var additionalInformation:String
     @Persisted var baggage:String
     @Persisted var treatOfCharacter:String
@@ -24,5 +24,5 @@ class PlayerStorage: Object {
     
     @Persisted var age:Int
     @Persisted var sex:String
-    @Persisted var gender: String
+    @Persisted var orientation: String
 }

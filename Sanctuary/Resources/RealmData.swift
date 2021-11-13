@@ -16,7 +16,6 @@ class RealmData{
     static var character:Results<TreatsOfCharacterRealm> {
         get {
             let realm = try! Realm()
-            print(realm.objects(TreatsOfCharacterRealm.self))
             return realm.objects(TreatsOfCharacterRealm.self)
         }
     }
@@ -62,6 +61,12 @@ class RealmData{
             return realm.objects(HealthRealm.self)
         }
     }
+    static var players:Results<PlayerInformationRealm> {
+        get {
+            let realm = try! Realm()
+            return realm.objects(PlayerInformationRealm.self)
+        }
+    }
    
     static func generateCharacterstic(objectType type: Object.Type, key: String, index:Int)->String{
         let realm = try! Realm()
@@ -77,14 +82,12 @@ class RealmData{
             case "Health":
                 let data = LoadJSON.parse(jsonData: localData, type: Health.self) as! Health
                 try! realm.write {
-                    print("trying to do")
                     for element in data {
-                        print(element.health)
+                        
                         let obj = HealthRealm()
                         obj.health = element.health
                         realm.add(obj)
                     }
-                    print("success")
                 }
                 break
             case "Additional Info":

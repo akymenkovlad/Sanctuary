@@ -13,13 +13,14 @@
 		910BF99A24E572C800873A81 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910BF99924E572C800873A81 /* Health.swift */; };
 		910BF99C24E5732B00873A81 /* Health.json in Resources */ = {isa = PBXBuildFile; fileRef = 910BF99B24E5732B00873A81 /* Health.json */; };
 		911C56EE273FF55700BB75ED /* RealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C56ED273FF55700BB75ED /* RealmData.swift */; };
-		911C56F0273FF6AC00BB75ED /* PlayerStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C56EF273FF6AC00BB75ED /* PlayerStorage.swift */; };
+		911C56F0273FF6AC00BB75ED /* PlayerInformationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C56EF273FF6AC00BB75ED /* PlayerInformationRealm.swift */; };
 		911C56F2273FFD4100BB75ED /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C56F1273FFD4100BB75ED /* GameData.swift */; };
 		91206A9C24D5908300453084 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91206A9B24D5908300453084 /* Person.swift */; };
 		9128C8BD24E14A3B00D2D31E /* PlayerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128C8BC24E14A3B00D2D31E /* PlayerInfoViewController.swift */; };
 		91491CB4273FC9F700324754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91491CB3273FC9F700324754 /* Extensions.swift */; };
 		91491CB6273FDC2000324754 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91491CB5273FDC2000324754 /* GameViewController.swift */; };
 		9160B0A0273FC87300CF49A5 /* StartingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9160B09F273FC87300CF49A5 /* StartingPageViewController.swift */; };
+		91801AE12740483800B78C37 /* PlayerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91801AE02740483800B78C37 /* PlayerDetailsViewController.swift */; };
 		918558B124F5952E005472FD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918558B024F5952E005472FD /* ActivityIndicator.swift */; };
 		9196406324E1380D0076A094 /* PlayersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9196406224E1380D0076A094 /* PlayersTableViewController.swift */; };
 		919818EA24F77B600088E01F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919818E924F77B600088E01F /* Player.swift */; };
@@ -56,13 +57,14 @@
 		910BF99924E572C800873A81 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 		910BF99B24E5732B00873A81 /* Health.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Health.json; sourceTree = "<group>"; };
 		911C56ED273FF55700BB75ED /* RealmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmData.swift; sourceTree = "<group>"; };
-		911C56EF273FF6AC00BB75ED /* PlayerStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStorage.swift; sourceTree = "<group>"; };
+		911C56EF273FF6AC00BB75ED /* PlayerInformationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInformationRealm.swift; sourceTree = "<group>"; };
 		911C56F1273FFD4100BB75ED /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		91206A9B24D5908300453084 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		9128C8BC24E14A3B00D2D31E /* PlayerInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoViewController.swift; sourceTree = "<group>"; };
 		91491CB3273FC9F700324754 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		91491CB5273FDC2000324754 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		9160B09F273FC87300CF49A5 /* StartingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingPageViewController.swift; sourceTree = "<group>"; };
+		91801AE02740483800B78C37 /* PlayerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailsViewController.swift; sourceTree = "<group>"; };
 		918558B024F5952E005472FD /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		9196406224E1380D0076A094 /* PlayersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTableViewController.swift; sourceTree = "<group>"; };
 		919818E924F77B600088E01F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -191,7 +193,7 @@
 			children = (
 				91AC083A24D58CD8008D0A29 /* Game.swift */,
 				919818E924F77B600088E01F /* Player.swift */,
-				911C56EF273FF6AC00BB75ED /* PlayerStorage.swift */,
+				911C56EF273FF6AC00BB75ED /* PlayerInformationRealm.swift */,
 				911C56F1273FFD4100BB75ED /* GameData.swift */,
 			);
 			path = GameData;
@@ -206,6 +208,7 @@
 				91E82C0424F7A15200A11582 /* SpecialConditionTableViewController.swift */,
 				9160B09F273FC87300CF49A5 /* StartingPageViewController.swift */,
 				91491CB5273FDC2000324754 /* GameViewController.swift */,
+				91801AE02740483800B78C37 /* PlayerDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -380,8 +383,9 @@
 				9160B0A0273FC87300CF49A5 /* StartingPageViewController.swift in Sources */,
 				91206A9C24D5908300453084 /* Person.swift in Sources */,
 				9105EDC924D744DD00100817 /* LoadJSON.swift in Sources */,
+				91801AE12740483800B78C37 /* PlayerDetailsViewController.swift in Sources */,
 				9105EDCB24D7465100100817 /* Character.swift in Sources */,
-				911C56F0273FF6AC00BB75ED /* PlayerStorage.swift in Sources */,
+				911C56F0273FF6AC00BB75ED /* PlayerInformationRealm.swift in Sources */,
 				919AC40824DA9B3700745ACC /* Baggage.swift in Sources */,
 				919AC41024DA9BBF00745ACC /* Job.swift in Sources */,
 				919AC40A24DA9B5400745ACC /* Disaster.swift in Sources */,

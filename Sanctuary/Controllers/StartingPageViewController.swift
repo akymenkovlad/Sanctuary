@@ -12,7 +12,7 @@ class StartingPageViewController: UIViewController {
     
     private var players = 1
     
-    var delegate: isAbleToReceiveData!
+    weak var delegate: isAbleToReceiveData?
     
     private let newGameButton: UIButton = {
         let button = UIButton()
@@ -79,7 +79,9 @@ class StartingPageViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        delegate.pass(numberOfPlayers: players)
+        if let delegate = delegate {
+                delegate.startNewGameWith(numberOfPlayers: players)
+            }
     }
     
     @objc func newGameButtonPressed(){
