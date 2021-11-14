@@ -33,7 +33,7 @@ struct Game{
   
     let objectKey: [String:Object.Type] = ["health":HealthRealm.self, "fear":FearsRealm.self,"additionalInformation":AddInfoRealm.self,"hobby":HobbiesRealm.self,"job":JobsRealm.self,"characteristic":TreatsOfCharacterRealm.self,"baggage":BaggageRealm.self,"specialCard":SpecialCardsRealm.self]
     
-    let sex:[String] = ["Мужской","Женский"]
+    let sex:[String] = ["Мужчина","Женщина"]
     let orientation:[String] = ["Гомосексуальность","Гетеросексуальность","Бисексуальность"]
     var ageArray:[Int] = []
     var sexArray:[String] = []

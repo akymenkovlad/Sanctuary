@@ -11,7 +11,7 @@ import RealmSwift
 
 class RealmData{
     
-   // static let realm = try! Realm()
+    // static let realm = try! Realm()
     
     static var character:Results<TreatsOfCharacterRealm> {
         get {
@@ -67,11 +67,17 @@ class RealmData{
             return realm.objects(PlayerInformationRealm.self)
         }
     }
-   
-    static func generateCharacterstic(objectType type: Object.Type, key: String, index:Int)->String{
+    
+    static func generateCharacterstic(objectType type: Object.Type, key: String, index:Int?)->String{
         let realm = try! Realm()
         let objects = realm.objects(type.self)
-        let value = objects[index].value(forKey: key) as! String
+        var value = ""
+        if let index = index {
+            value = objects[index].value(forKey: key) as! String
+        }
+        else{
+            value = objects[Int.random(in: 0..<objects.count)].value(forKey: key) as! String
+        }
         return value
     }
     //MARK: - JSON
@@ -91,7 +97,7 @@ class RealmData{
                 }
                 break
             case "Additional Info":
-               let data = LoadJSON.parse(jsonData: localData, type: AddInformation.self) as! AddInformation
+                let data = LoadJSON.parse(jsonData: localData, type: AddInformation.self) as! AddInformation
                 try! realm.write {
                     for element in data {
                         let obj = AddInfoRealm()
@@ -101,7 +107,7 @@ class RealmData{
                 }
                 break
             case "Baggage":
-               let data = LoadJSON.parse(jsonData: localData, type: Baggage.self) as! Baggage
+                let data = LoadJSON.parse(jsonData: localData, type: Baggage.self) as! Baggage
                 try! realm.write {
                     for element in data {
                         let obj = BaggageRealm()
@@ -111,7 +117,7 @@ class RealmData{
                 }
                 break
             case "Character":
-               let data = LoadJSON.parse(jsonData: localData, type: Character.self) as! Character
+                let data = LoadJSON.parse(jsonData: localData, type: Character.self) as! Character
                 try! realm.write {
                     for element in data {
                         let obj = TreatsOfCharacterRealm()
@@ -121,7 +127,7 @@ class RealmData{
                 }
                 break
             case "Fear":
-               let data = LoadJSON.parse(jsonData: localData, type: Fear.self) as! Fear
+                let data = LoadJSON.parse(jsonData: localData, type: Fear.self) as! Fear
                 try! realm.write {
                     for element in data {
                         let obj = FearsRealm()
@@ -131,7 +137,7 @@ class RealmData{
                 }
                 break
             case "Hobby":
-               let data = LoadJSON.parse(jsonData: localData, type: Hobby.self) as! Hobby
+                let data = LoadJSON.parse(jsonData: localData, type: Hobby.self) as! Hobby
                 try! realm.write {
                     for element in data {
                         let obj = HobbiesRealm()

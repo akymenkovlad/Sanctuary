@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import JGProgressHUD
 
 protocol isAbleToReceiveData: AnyObject{
     func startNewGameWith(numberOfPlayers: Int)
@@ -19,6 +20,8 @@ class GameViewController: UIViewController {
     var arrayJSON = ["Person","Additional Info", "Baggage","Character","Disaster","Fear","Hobby","Job","Special Cards","Health"]
     private var numberOfPlayers = 0
     private var game = Game(numberOfPlayers: 0)
+    
+    private let spinner = JGProgressHUD(style: .dark)
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -41,24 +44,86 @@ class GameViewController: UIViewController {
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
                                                               style: .done,
                                                               target: self,
-                                                              action: #selector(newGameButtonPressed)),
-                                          UIBarButtonItem(image: UIImage(systemName: "plus.circle"),
+                                                              action: #selector(sendTxtFiles)),
+                                              UIBarButtonItem(image: UIImage(systemName: "plus.circle"),
                                                               style: .done,
                                                               target: self,
-                                                              action: #selector(newGameButtonPressed))]
+                                                              action: #selector(addFeature))]
         activateConstraints()
         checkInformationAboutGameAndPlayers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        spinner.show(in: view)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         validateNewGame()
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.spinner.dismiss()
+            self.tableView.reloadData()
+        }
     }
     
     @objc func newGameButtonPressed(){
         UserDefaults.standard.setValue(false, forKey: "GameIsCreated")
         presentNewGameScreen()
+    }
+    @objc func sendTxtFiles(){
+        spinner.show(in: view)
+        var fileURLShare:[URL] = []
+        for i in 0..<numberOfPlayers{
+            let player = game.playerList[i]
+            let text = """
+            Профессия: \(player.job) стаж - \(player.jobExperience) лет
+            
+            Возраст:\(player.age) лет,
+            пол-\(player.sex),
+            ориентация - \(player.orientation)
+            
+            Здоровье:\(player.health)
+            
+            Хобби:\(player.hobby)
+            
+            Дополнительная информация:\(player.additionalInformation)
+            
+            Фобия:\(player.fear)
+            
+            Багаж:\(player.baggage)
+            
+            Черта:\(player.treatOfCharacter)
+            
+            Специальные карты:
+            
+            1.\(player.firstSpecialCard)
+            
+            2.\(player.secondSpecialCard)
+            """
+            let file = "Игрок \(i+1).txt"
+            if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                let fileURL = dir.appendingPathComponent(file)
+                //writing
+                do {
+                    try text.write(to: fileURL, atomically: false, encoding: .utf8)
+                }
+                catch {/* error handling here */}
+                fileURLShare.append(fileURL)
+            }
+        }
+        let vc =  UIActivityViewController(activityItems: fileURLShare, applicationActivities: [])
+        present(vc, animated: true)
+        DispatchQueue.main.async {
+            self.spinner.dismiss()
+        }
+    }
+    @objc func addFeature(){
+        let vc = RandomCharacteristicsViewController()
+        vc.title = "Характеристики"
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .pageSheet
+        self.present(navigationController, animated: false, completion: nil)
     }
     
     private func validateNewGame(){
@@ -71,9 +136,6 @@ class GameViewController: UIViewController {
         }
     }
     private func presentNewGameScreen(){
-        guard !RealmData.players.isEmpty else {
-            return
-        }
         try! realm.write {
             realm.delete(RealmData.players)
         }
@@ -87,9 +149,11 @@ class GameViewController: UIViewController {
     
     private func saveDataAboutPlayers(){
         try! realm.write {
+            var id = 0
             for playerElement in game.playerList {
                 // Add player to database.
                 let player = PlayerInformationRealm()
+                player.playerID = "\(id)"
                 player.additionalInformation = playerElement.additionalInformation
                 player.baggage = playerElement.baggage
                 player.treatOfCharacter = playerElement.treatOfCharacter
@@ -104,6 +168,8 @@ class GameViewController: UIViewController {
                 player.sex = playerElement.sex
                 player.orientation = playerElement.orientation
                 realm.add(player)
+                id+=1
+                dump(RealmData.players)
             }
         }
     }
@@ -183,6 +249,7 @@ extension GameViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = PlayerDetailsViewController(player:game.playerList[indexPath.row], number: indexPath.row)
         vc.title = "Игрок \(indexPath.row+1)"
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -196,5 +263,10 @@ extension GameViewController: isAbleToReceiveData{
     }
     func getPlayerInfo(player: Player, number: Int) {
         game.playerList[number] = player
+        dump(game.playerList[number])
+        try! realm.write {
+            realm.delete(RealmData.players)
+        }
+        saveDataAboutPlayers()
     }
 }
