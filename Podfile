@@ -7,5 +7,5 @@ target 'Sanctuary' do
 
   # Pods for Sanctuary
 pod 'JGProgressHUD'
-pod 'RealmSwift'
+pod 'RealmSwift', '~>10'
 end
