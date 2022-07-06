@@ -12,10 +12,11 @@ jobs:
         uses: actions/checkout@v1
       - name: Setup provisioning profile
         run: ./.github/secrets/decrypt_secrets.sh
-      - name: Bundle Install
-        run: bundle install
-      - name: Dependencies
-        run: bundle exec pod install
+      - name: Install Dependencies
+        run: |
+         cd Example
+         pod install --repo-update
+        shell: bash
       - name: Archiving project
         env:
           PR_NUMBER: $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
