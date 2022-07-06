@@ -26,6 +26,7 @@ class PlayerInformationRealm: Object {
     @Persisted var sex:String
     @Persisted var orientation: String
     @Persisted var playerID = UUID().uuidString
+    
     override static func primaryKey() -> String? {
         return "playerID"
       }

@@ -14,14 +14,14 @@ protocol isAbleToReceiveData: AnyObject{
     func startNewGameWith(numberOfPlayers: Int)
     func getPlayerInfo(player:Player,number:Int)
 }
-class GameViewController: UIViewController {
+class GameViewController: BaseViewController {
     
     let realm = try! Realm()
     var arrayJSON = ["Person","Additional Info", "Baggage","Character","Disaster","Fear","Hobby","Job","Special Cards","Health"]
     private var numberOfPlayers = 0
     private var game = Game(numberOfPlayers: 0)
     
-    private let spinner = JGProgressHUD(style: .dark)
+    private let spinner = JGProgressHUD(style: .light)
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -41,14 +41,10 @@ class GameViewController: UIViewController {
                                                            style: .done,
                                                            target: self,
                                                            action: #selector(newGameButtonPressed))
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
                                                               style: .done,
                                                               target: self,
-                                                              action: #selector(sendTxtFiles)),
-                                              UIBarButtonItem(image: UIImage(systemName: "plus.circle"),
-                                                              style: .done,
-                                                              target: self,
-                                                              action: #selector(addFeature))]
+                                                              action: #selector(sendTxtFiles))
         activateConstraints()
         checkInformationAboutGameAndPlayers()
     }
@@ -118,13 +114,6 @@ class GameViewController: UIViewController {
             self.spinner.dismiss()
         }
     }
-    @objc func addFeature(){
-        let vc = RandomCharacteristicsViewController()
-        vc.title = "Характеристики"
-        let navigationController = UINavigationController(rootViewController: vc)
-        navigationController.modalPresentationStyle = .pageSheet
-        self.present(navigationController, animated: false, completion: nil)
-    }
     
     private func validateNewGame(){
         if UserDefaults.standard.object(forKey: "GameIsCreated") == nil
@@ -135,6 +124,7 @@ class GameViewController: UIViewController {
             presentNewGameScreen()
         }
     }
+    
     private func presentNewGameScreen(){
         try! realm.write {
             realm.delete(RealmData.players)
@@ -142,7 +132,7 @@ class GameViewController: UIViewController {
         let vc = StartingPageViewController()
         vc.title = "Sanctuary"
         vc.delegate = self
-        let navVC = UINavigationController(rootViewController: vc)
+        let navVC = BaseNavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
     }
@@ -236,7 +226,7 @@ extension GameViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Игрок \(indexPath.row+1)"
+        cell.textLabel?.text = "Player \(indexPath.row+1)"
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         cell.tintColor = UIColor.darkRed
@@ -244,11 +234,11 @@ extension GameViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Игроки"
+        return "Players"
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = PlayerDetailsViewController(player:game.playerList[indexPath.row], number: indexPath.row)
-        vc.title = "Игрок \(indexPath.row+1)"
+        vc.title = "Player \(indexPath.row+1)"
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
         

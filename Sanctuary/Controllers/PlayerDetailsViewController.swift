@@ -10,9 +10,9 @@ import UIKit
 import RealmSwift
 import JGProgressHUD
 
-class PlayerDetailsViewController: UIViewController {
+class PlayerDetailsViewController: BaseViewController {
     
-    var spinner = JGProgressHUD(style: .dark)
+    var spinner = JGProgressHUD(style: .light)
     
     var player: Player
     weak var delegate: isAbleToReceiveData?
@@ -43,6 +43,11 @@ class PlayerDetailsViewController: UIViewController {
         
         view.addSubview(tableView)
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
+                                                              style: .done,
+                                                              target: self,
+                                                              action: #selector(sendTxtFile))
+        
         activateConstraints()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -63,7 +68,53 @@ class PlayerDetailsViewController: UIViewController {
         
         NSLayoutConstraint.activate(constraints)
     }
+    @objc func sendTxtFile(){
+        spinner.show(in: view)
+        var fileURLShare:[URL] = []
+        let text = """
+            Job: \(player.job) experience - \(player.jobExperience) year(s)
+            
+            Age:\(player.age) years,
+            sex-\(player.sex),
+            gender - \(player.orientation)
+            
+            Health:\(player.health)
+            
+            Hobby:\(player.hobby)
+            
+            Additional info:\(player.additionalInformation)
+            
+            Fear:\(player.fear)
+            
+            Baggage:\(player.baggage)
+            
+            Character:\(player.treatOfCharacter)
+            
+            Special cards:
+            
+            1.\(player.firstSpecialCard)
+            
+            2.\(player.secondSpecialCard)
+            """
+        let file = "Player \(playerNumber+1).txt"
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = dir.appendingPathComponent(file)
+            //writing
+            do {
+                try text.write(to: fileURL, atomically: false, encoding: .utf8)
+            }
+            catch {/* error handling here */}
+            fileURLShare.append(fileURL)
+        }
+        let vc =  UIActivityViewController(activityItems: fileURLShare, applicationActivities: [])
+        present(vc, animated: true)
+        DispatchQueue.main.async {
+            self.spinner.dismiss()
+        }
+    }
 }
+
+//MARK: - UITableViewDataSource,UITableViewDelegate
 extension PlayerDetailsViewController: UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
@@ -186,7 +237,7 @@ extension PlayerDetailsViewController: UITableViewDataSource,UITableViewDelegate
             break
         }
         let alert = UIAlertController(title: valueString, message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Поменять значение", style: .default, handler: {_ in
+        alert.addAction(UIAlertAction(title: "Change information", style: .default, handler: {_ in
             self.spinner.show(in: tableView)
             switch indexPath.section {
             case 0:
@@ -258,7 +309,7 @@ extension PlayerDetailsViewController: UITableViewDataSource,UITableViewDelegate
                 self.spinner.dismiss()
             }
         }))
-        alert.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler: {_ in}))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {_ in}))
         present(alert, animated: true, completion: nil)
         print("sdf")
     }
@@ -277,23 +328,23 @@ extension PlayerDetailsViewController: UITableViewDataSource,UITableViewDelegate
         label.numberOfLines = 1
         switch section {
         case 0:
-            label.text = "Биологические характеристики"
+            label.text = "Physical treats"
         case 1:
-            label.text = "Профессия"
+            label.text = "Job"
         case 2:
-            label.text = "Здоровье"
+            label.text = "Health"
         case 3:
-            label.text = "Дополнительная информация"
+            label.text = "Additional info"
         case 4:
-            label.text = "Хобби"
+            label.text = "Hobby"
         case 5:
-            label.text = "Фобия"
+            label.text = "Fear"
         case 6:
-            label.text = "Багаж"
+            label.text = "Baggage"
         case 7:
-            label.text = "Черта характера"
+            label.text = "Character"
         case 8:
-            label.text = "Специальные карты"
+            label.text = "Special cards"
         default:
             label.text = ""
         }

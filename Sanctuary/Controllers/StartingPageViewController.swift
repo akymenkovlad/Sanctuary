@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StartingPageViewController: UIViewController {
+class StartingPageViewController: BaseViewController {
     
     private var players = 1
     
@@ -16,7 +16,7 @@ class StartingPageViewController: UIViewController {
     
     private let newGameButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Новая игра", for: .normal)
+        button.setTitle("New game", for: .normal)
         button.backgroundColor = UIColor.darkRed
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
@@ -35,7 +35,7 @@ class StartingPageViewController: UIViewController {
     
     private let playersCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "Количество игроков: 1"
+        label.text = "Players: 1"
         label.textColor = UIColor.darkRed
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -92,7 +92,7 @@ class StartingPageViewController: UIViewController {
     
     @objc func stepperValueChanged(_ sender:UIStepper){
         players = Int(sender.value)
-        playersCountLabel.text = "Количество игроков: \(players)"
+        playersCountLabel.text = "Players: \(players)"
         print("Количество игроков: \(players)")
     }
     private func activateConstraints(){

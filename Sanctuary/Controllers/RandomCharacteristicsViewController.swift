@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class RandomCharacteristicsViewController: UIViewController {
+class RandomCharacteristicsViewController: BaseViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
@@ -62,9 +62,9 @@ extension RandomCharacteristicsViewController:UITableViewDelegate,UITableViewDat
         case 0:
             switch indexPath.row {
             case 0:
-                cell.textLabel?.text = "Ориентация"
+                cell.textLabel?.text = "Gender"
             case 1:
-                cell.textLabel?.text = "Возраст"
+                cell.textLabel?.text = "Age"
             default:
                 cell.textLabel?.text = ""
                 break
@@ -72,24 +72,24 @@ extension RandomCharacteristicsViewController:UITableViewDelegate,UITableViewDat
         case 1:
             switch indexPath.row {
             case 0:
-                cell.textLabel?.text = "Профессия"
+                cell.textLabel?.text = "Job"
             case 1:
-                cell.textLabel?.text = "Опыт работы"
+                cell.textLabel?.text = "Work experience"
             default:
                 break
             }
         case 2:
-            cell.textLabel?.text = "Хобби"
+            cell.textLabel?.text = "Hobby"
         case 3:
-            cell.textLabel?.text = "Здоровье"
+            cell.textLabel?.text = "Health"
         case 4:
-            cell.textLabel?.text = "Фобия"
+            cell.textLabel?.text = "Fear"
         case 5:
-            cell.textLabel?.text = "Багаж"
+            cell.textLabel?.text = "Baggage"
         case 6:
-            cell.textLabel?.text = "Дополнительная информация"
+            cell.textLabel?.text = "Additional information"
         case 7:
-            cell.textLabel?.text = "Черта характера"
+            cell.textLabel?.text = "Character"
         default:
             break
         }
@@ -144,7 +144,7 @@ extension RandomCharacteristicsViewController:UITableViewDelegate,UITableViewDat
             break
         }
         let alert = UIAlertController(title: newInformation, message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: {_ in}))
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {_ in}))
         present(alert, animated: true, completion: nil)
     }
 }
