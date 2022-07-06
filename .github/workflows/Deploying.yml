@@ -14,7 +14,7 @@ jobs:
         run: ./.github/secrets/decrypt_secrets.sh
       - name: Install Dependencies
         run: |
-         pod install --repo-update
+         pod install
         shell: bash
       - name: Archiving project
         env:
