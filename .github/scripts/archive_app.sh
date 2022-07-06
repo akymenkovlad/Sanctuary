@@ -7,5 +7,4 @@ xcodebuild -workspace "$NAME".xcworkspace \
             -sdk iphoneos \
             -configuration AppStoreDistribution \
             -archivePath $PWD/build/"$NAME".xcarchive \
-            -allowProvisioningUpdates \ 
             clean archive | xcpretty
