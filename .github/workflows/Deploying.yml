@@ -12,7 +12,9 @@ jobs:
         uses: actions/checkout@v1
       - name: Setup provisioning profile
         run: ./.github/secrets/decrypt_secrets.sh
-      - name: Pod install
+      - name: Bundle Install
+        run: bundle install
+      - name: Dependencies
         run: bundle exec pod install
       - name: Archiving project
         env:
